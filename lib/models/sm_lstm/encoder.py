@@ -81,31 +81,3 @@ class RegLSTMEncoder(nn.Module):
 
         x = F.relu(torch.transpose(rnn_outs_temp, 1, 2))
         x = F.max_pool1d(x, x.size(2)).squeeze(2)
-        '''x = self.dropout(x)
-        if self.has_bottleneck_layer:
-            x = F.relu(self.fc1(x))
-            # x = self.dropout(x)
-            if self.tar or self.ar:
-                return self.fc2(x), rnn_outs.permute(1,0,2)
-            return self.fc2(x)
-        else:
-            if self.tar or self.ar:
-                return self.fc1(x), rnn_outs.permute(1,0,2)
-            return self.fc1(x)'''
-
-    '''def update_ema(self):
-        self.steps_ema += 1
-        for p, avg_p in zip(self.parameters(), self.avg_param):
-            avg_p.mul_(self.beta_ema).add_((1-self.beta_ema)*p.data)
-    
-    def load_ema_params(self):
-        for p, avg_p in zip(self.parameters(), self.avg_param):
-            p.data.copy_(avg_p/(1-self.beta_ema**self.steps_ema))
-
-    def load_params(self, params):
-        for p,avg_p in zip(self.parameters(), params):
-            p.data.copy_(avg_p)
-
-    def get_params(self):
-        params = deepcopy(list(p.data for p in self.parameters()))
-        return params'''
